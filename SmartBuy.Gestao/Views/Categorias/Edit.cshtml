@@ -1,0 +1,21 @@
+﻿@using SmartBuy.Models;
+
+@model Categoria
+
+<form asp-action="Edit">
+    <div class="form-row">
+        <h4>Categorias</h4>
+        <input type="hidden" asp-for="IdCategoria" />
+        <div class="form-group col-md-6">
+            <label>Descrição</label>
+            <input class="form-control" asp-for="Descricao" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 mt-3">
+            <button type="submit" value="Enviar" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
+</form>
+
+

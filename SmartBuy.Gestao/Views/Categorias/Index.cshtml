@@ -1,0 +1,36 @@
+﻿@using SmartBuy.Models;
+
+@model IEnumerable<Categoria>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.IdCategoria)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCategoria)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.IdCategoria">Detalhes</a>
+                        <a asp-action="Edit" asp-route-id="@item.IdCategoria">Editar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
