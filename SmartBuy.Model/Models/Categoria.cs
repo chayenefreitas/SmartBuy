@@ -1,0 +1,15 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartBuy.Models
+{
+    public class Categoria
+    {
+        [Key]
+        public int IdCategoria { get; set; }
+
+        [Display(Name = "Descrição")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [StringLength(150, ErrorMessage = "O campo {0} precisa ter no máximo {1} caracteres")]
+        public string Descricao { get; set; }
+    }
+}
