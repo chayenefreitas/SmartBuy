@@ -1,4 +1,4 @@
-namespace SmartBuy.Gestao.Models
+namespace SmartBuy.Models
 {
     public class ErrorViewModel
     {

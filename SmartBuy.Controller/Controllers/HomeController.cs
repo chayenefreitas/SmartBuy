@@ -1,8 +1,9 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SmartBuy.Gestao.Models;
+using Microsoft.Extensions.Logging;
+using SmartBuy.Models;
 
-namespace SmartBuy.Gestao.Controllers
+namespace SmartBuy.Controllers
 {
     public class HomeController : Controller
     {
