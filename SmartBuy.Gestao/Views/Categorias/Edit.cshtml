@@ -4,10 +4,10 @@
 
 <form asp-action="Edit">
     <div class="form-row">
-        <h4>Categorias</h4>
+        <h4 class="display-6">Categorias</h4>
         <input type="hidden" asp-for="IdCategoria" />
         <div class="form-group col-md-6">
-            <label>Descrição</label>
+            <label class="col-form-label">Descrição</label>
             <input class="form-control" asp-for="Descricao" />
         </div>
     </div>
@@ -17,5 +17,11 @@
         </div>
     </div>
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 

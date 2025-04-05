@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SmartBuy.Gestao.Data;
+using SmartBuy.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

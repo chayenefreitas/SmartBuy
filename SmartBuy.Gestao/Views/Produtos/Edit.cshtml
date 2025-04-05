@@ -1,0 +1,70 @@
+﻿@using SmartBuy.Models;
+
+@model Produto
+
+<form asp-action="Edit">
+    <div class="form-row">
+        <h4 class="display-6">Cadastro de Produtos</h4>
+        <input type="hidden" asp-for="IdProduto" />
+        <input type="hidden" asp-for="IdVendedor" />
+
+        <div class="form-group col-md-6">
+            <label class="col-form-label" asp-for="Nome">Nome</label>
+            <input class="form-control" asp-for="Nome" />
+            <span asp-validation-for="Nome" class="alert-danger" />
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label" asp-for="Descricao">Descrição</label>
+            <input class="form-control" asp-for="Descricao" />
+            <span asp-validation-for="Descricao" class="alert-danger" />
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Preco" class="form-label">Preço</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input asp-for="Preco" class="form-control" />
+                </div>
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="col-form-label" asp-for="Estoque">Estoque</label>
+            <input class="form-control" asp-for="Estoque" />
+            <span asp-validation-for="Estoque" class="alert-danger" />
+        </div>
+
+        <div class="form-group col-md-6">
+
+            <label class="col-form-label" asp-for="Descricao">Categoria</label>
+            <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.Categorias">
+                <option value="">Selecione a categoria</option>
+            </select>
+
+            <span asp-validation-for="Categoria.Descricao" class="alert-danger" />
+        </div>
+        <div class="form-group col-md-6">
+            <label class="col-form-label" asp-for="Imagem">Imagem</label>
+            <input class="form-control" asp-for="Imagem" />
+            <span asp-validation-for="Imagem" class="alert-danger" />
+        </div>
+
+        
+
+        <div class="row">
+            <div class="col-sm-4 mt-3">
+                <button type="submit" value="Enviar" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

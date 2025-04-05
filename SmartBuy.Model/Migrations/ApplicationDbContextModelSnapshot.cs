@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SmartBuy.Gestao.Data;
+using SmartBuy.Models;
 
 #nullable disable
 
-namespace SmartBuy.Gestao.Data.Migrations
+namespace SmartBuy.Model.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250404180048_v01-SmartBuy")]
-    partial class v01SmartBuy
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -253,9 +250,6 @@ namespace SmartBuy.Gestao.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProduto"));
 
-                    b.Property<int?>("CategoriaIdCategoria")
-                        .HasColumnType("int");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -265,8 +259,13 @@ namespace SmartBuy.Gestao.Data.Migrations
                         .HasPrecision(18, 4)
                         .HasColumnType("decimal(18,4)");
 
+                    b.Property<int>("IdCategoria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdVendedor")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Imagem")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Nome")
@@ -279,8 +278,6 @@ namespace SmartBuy.Gestao.Data.Migrations
                         .HasColumnType("decimal(18,4)");
 
                     b.HasKey("IdProduto");
-
-                    b.HasIndex("CategoriaIdCategoria");
 
                     b.ToTable("Produtos");
                 });
@@ -360,15 +357,6 @@ namespace SmartBuy.Gestao.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SmartBuy.Models.Produto", b =>
-                {
-                    b.HasOne("SmartBuy.Models.Categoria", "Categoria")
-                        .WithMany()
-                        .HasForeignKey("CategoriaIdCategoria");
-
-                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

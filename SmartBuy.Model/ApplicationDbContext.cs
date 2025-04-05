@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SmartBuy.Models;
 
-namespace SmartBuy.Gestao.Data
+namespace SmartBuy.Models
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -37,6 +36,9 @@ namespace SmartBuy.Gestao.Data
                 .Property(p => p.Descricao)
                 .HasMaxLength(250);
 
+            builder.Entity<Produto>()
+                .Property(p => p.Imagem)
+                .IsRequired(false);
 
             base.OnModelCreating(builder);
         }
