@@ -39,5 +39,8 @@ namespace SmartBuy.Models
 
         public int IdVendedor { get; set; }
 
+        //[NotMapped]
+        //public Vendedor Vendedor { get; set; }
+
     }
 }

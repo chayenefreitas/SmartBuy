@@ -16,6 +16,6 @@ namespace SmartBuy.Models
 
         [Display(Name = "Descrição")]
         [StringLength(250, ErrorMessage = "O campo {0} precisa ter no máximo {1} caracteres")]
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = string.Empty;
     }
 }

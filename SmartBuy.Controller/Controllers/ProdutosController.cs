@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using SmartBuy.Models;
 
@@ -12,7 +13,6 @@ namespace SmartBuy.Controllers
         {
             _context = context;
         }
-
         public async Task<IActionResult> Index()
         {
             return View(await _context.Produtos.ToListAsync());
@@ -36,20 +36,23 @@ namespace SmartBuy.Controllers
                 return RedirectToAction(nameof(Index));
             }
             else
-            {
-                //recarrega as categorias
-                ViewBag.Categorias = new SelectList(_context.Categorias, "IdCategoria", "Descricao", produto.IdCategoria);
                 return View(produto);
-            }
-            
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id);
+            if (_context.Produtos == null)
+                return NotFound();
+
+            var produto = _context.Produtos.FirstOrDefault(x => x.IdProduto == id);
+
+            if (produto == null)
+                return NotFound();
+
             return View(produto);
         }
 
+        [Route("Produtos/editar/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
@@ -57,7 +60,7 @@ namespace SmartBuy.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("Produtos/editar/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [FromBody] Produto produto)
         {
@@ -75,14 +78,35 @@ namespace SmartBuy.Controllers
             else return View(produto);
         }
 
+        [Route("Produtos/excluir/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var produto = _context.Produtos.Where(x => x.IdProduto == id).FirstOrDefault();
-            _context.Remove(produto);
-            await _context.SaveChangesAsync();
+            if (_context.Produtos == null)
+                return NotFound();
 
-            return RedirectToActionPermanent(nameof(Index));
+            var produto = await _context.Produtos.Where(x => x.IdProduto == id).FirstOrDefaultAsync();
+
+            if (produto == null)
+                return NotFound();
+
+            return View(produto);
         }
 
+        [HttpPost("Produtos/excluir/{id:int}")]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteProduto(int id)
+        {
+            if (_context.Produtos == null)
+                return Problem("Produto é nulo");
+            var produto = await _context.Produtos.FindAsync(id);
+
+            if (produto != null)
+            {
+                _context.Produtos.Remove(produto);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
