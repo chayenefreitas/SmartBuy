@@ -20,7 +20,8 @@ namespace SmartBuy.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Categorias = new SelectList(_context.Categorias, "IdCategoria", "Descricao");
+            //carregar o combobox de categorias
+            CarregarCategorias();
             return View();
         }
 
@@ -55,6 +56,8 @@ namespace SmartBuy.Controllers
         [Route("Produtos/editar/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
+            //carregar o combobox de categorias
+            CarregarCategorias();
             var produto = await _context.Produtos.FindAsync(id);
             return View(produto);
 
@@ -62,7 +65,7 @@ namespace SmartBuy.Controllers
 
         [HttpPost("Produtos/editar/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromBody] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProduto, Nome, Descricao, Preco, Estoque, IdCategoria, Imagem")] Produto produto)
         {
             if (id != produto.IdProduto)
             {
@@ -107,6 +110,11 @@ namespace SmartBuy.Controllers
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        private void CarregarCategorias()
+        {
+            ViewBag.Categorias = new SelectList(_context.Categorias, "IdCategoria", "Nome");
         }
     }
 }
