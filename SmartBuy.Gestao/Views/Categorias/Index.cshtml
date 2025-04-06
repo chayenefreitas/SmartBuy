@@ -2,7 +2,12 @@
 
 @model IEnumerable<Categoria>
 
-<h4 class="display-6">Categorias</h4>
+
+@{
+    ViewData["Title"] = "Lista de Categorias";
+}
+
+<h1 class="display-5 mb-4 text-center">@ViewData["Title"]</h1>
 <hr />
 
 <div class="d-flex justify-content-end mb-3">
