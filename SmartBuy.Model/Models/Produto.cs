@@ -27,6 +27,8 @@ namespace SmartBuy.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "O {0} deve ser maior que zero.")]
         public decimal Estoque { get; set; }
 
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [Display(Name = "Categoria")]
         public int IdCategoria { get; set; }
 
         [NotMapped]

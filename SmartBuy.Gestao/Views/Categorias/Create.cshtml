@@ -1,23 +1,31 @@
 ﻿@using SmartBuy.Models;
 @model Categoria
 
+@{
+    ViewData["Title"] = "Cadastrar Nova Categoria";
+}
+<h1>@ViewData["Title"]</h1>
+
+<h4 class="form-control-plaintext">Preencha os dados da categoria</h4>
+<hr/>
 <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-row">
-        <h4 class="display-6">Cadastro de Categorias</h4>
         <div class="form-group col-md-6">
             <label class="col-form-label">Descrição</label>
             <input class="form-control" asp-for="Descricao" />
-            <span asp-validation-for="Descricao" class="alert-danger"/>
+            <span asp-validation-for="Descricao" class="alert-danger" />
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4 mt-3">
             <button type="submit" value="Enviar" class="btn btn-primary">Enviar</button>
+            <a asp-action="Index" class="btn btn-warning">Voltar</a>
         </div>
     </div>
 </form>
 
-@section Scripts{
+@section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

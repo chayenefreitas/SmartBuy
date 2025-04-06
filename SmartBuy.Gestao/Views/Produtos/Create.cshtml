@@ -2,9 +2,18 @@
 
 @model Produto
 
+
+@{
+    ViewData["Title"] = "Cadastrar Novo Produto";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h4 class="form-control-plaintext">Preencha os dados do produto</h4>
+<hr/>
 <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-row">
-        <h4 class="display-6">Cadastro de Produtos</h4>
+        
         <div class="form-group col-md-6">
             <label class="col-form-label" asp-for="Nome">Nome</label>
             <input class="form-control" asp-for="Nome" />
@@ -23,7 +32,7 @@
                     <span class="input-group-text">$</span>
                     <input asp-for="Preco" class="form-control" />
                 </div>
-                <span asp-validation-for="Preco" class="text-danger"></span>
+                <span asp-validation-for="Preco" class="alert-danger"></span>
             </div>
         </div>
 
@@ -40,7 +49,7 @@
                 <option value="">Selecione a categoria</option>
             </select>
 
-            <span asp-validation-for="Categoria.Descricao" class="alert-danger" />
+            <span asp-validation-for="IdCategoria" class="alert-danger" />
         </div>
         <div class="form-group col-md-6">
             <label class="col-form-label" asp-for="Imagem">Imagem</label>
@@ -48,12 +57,13 @@
             <span asp-validation-for="Imagem" class="alert-danger" />
         </div>
 
-        <input asp-for="IdVendedor" value="1"/>
+        <input asp-for="IdVendedor" type="hidden" value="1"/>
 
         <input type="hidden" asp-for="IdVendedor" />
         <div class="row">
             <div class="col-sm-4 mt-3">
                 <button type="submit" value="Enviar" class="btn btn-primary">Enviar</button>
+                <a asp-action="Index" class="btn btn-warning">Voltar</a>
             </div>
         </div>
     </div>
