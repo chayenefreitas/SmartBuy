@@ -7,8 +7,14 @@
         <h4 class="display-6">Categorias</h4>
         <input type="hidden" asp-for="IdCategoria" />
         <div class="form-group col-md-6">
+            <label class="col-form-label">Nome</label>
+            <input class="form-control" asp-for="Nome" />
+            <span asp-validation-for="Nome" class="alert-danger" />
+        </div>
+        <div class="form-group col-md-6">
             <label class="col-form-label">Descrição</label>
             <input class="form-control" asp-for="Descricao" />
+            <span asp-validation-for="Descricao" class="alert-danger" />
         </div>
     </div>
     <div class="row">

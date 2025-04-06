@@ -38,7 +38,14 @@ namespace SmartBuy.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
+            if (_context.Categorias == null)
+                return NotFound();
+
             var categoria = await _context.Categorias.FirstOrDefaultAsync(x => x.IdCategoria == id);
+
+            if (categoria == null)
+                return NotFound();
+
             return View(categoria);
         }
 
@@ -67,18 +74,40 @@ namespace SmartBuy.Controllers
             else return View(categoria);
         }
 
+        [Route("excluir/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var categoria = _context.Categorias.Where(x => x.IdCategoria == id).FirstOrDefault();
+            if (_context.Categorias == null)
+                return NotFound();
 
-            //Verifica se existe algum produto que utiliza a categoria selecionada
-            if(categoria.IdCategoria > 0 && !_context.Produtos.Any(x => x.IdCategoria == id))
-            { 
-                _context.Remove(categoria);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToActionPermanent(nameof(Index));
+            var categoria = await _context.Categorias.Where(x => x.IdCategoria == id).FirstOrDefaultAsync();
+
+            if (categoria == null)
+                return NotFound();
+
+            return View(categoria);
         }
 
+        [HttpPost("excluir/{id:int}")]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Categorias == null)
+                return Problem("Categoria é nula");
+            var categoria = await _context.Categorias.FindAsync(id);
+
+            if (categoria != null && !_context.Produtos.Any(x => x.IdCategoria == id))
+            {
+                _context.Categorias.Remove(categoria);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                TempData["Alerta"] = "";
+                return View(categoria);
+            }
+        }
     }
 }

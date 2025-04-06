@@ -17,8 +17,13 @@ namespace SmartBuy.Models
                 .HasMaxLength(200);
 
             builder.Entity<Categoria>()
-                .Property(p => p.Descricao)
+                .Property(p => p.Nome)
                 .HasMaxLength(150);
+
+            builder.Entity<Categoria>()
+               .Property(p => p.Descricao)
+               .HasMaxLength(250)
+               .IsRequired(false);
 
             builder.Entity<Produto>()
                 .Property(p => p.Preco)
