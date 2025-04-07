@@ -18,7 +18,14 @@
     {
         <div class="col">
             <div class="card h-100 shadow-sm">
-                <img src="@item.Imagem" class="card-img-top img-fluid" style="height: 250px; object-fit: cover;" alt="@item.Nome" />
+                @if (item.Imagem != null)
+                {
+                    <img src="@Url.Action("Imagem", "Produtos", new {id = item.IdProduto})" class="card-img-top img-fluid" style="height: 250px; object-fit: cover;" alt="@item.Nome" />
+                }
+                else
+                {
+                    <span>Sem Imagem</span>
+                }
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@item.Nome</h5>
                     <p class="card-text text-muted">@item.Descricao</p>

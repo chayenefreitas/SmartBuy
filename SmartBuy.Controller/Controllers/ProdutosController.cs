@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -34,7 +35,17 @@ namespace SmartBuy.Controllers
                 return View(await _context.Produtos.ToListAsync());
             else
                 return View(await _context.Produtos.Where(x => x.IdVendedor.Equals(user.Id)).ToListAsync());
+
         }
+
+        public async Task<IActionResult> Imagem(int id)
+        {
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id);
+            if (produto?.Imagem != null)
+                return File(produto.Imagem, produto.ImagemMimeType);
+            return NotFound();
+        }
+
 
         public IActionResult Create()
         {
@@ -45,10 +56,21 @@ namespace SmartBuy.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Create([FromForm] Produto produto)
+        public async Task<IActionResult> Create([FromForm] Produto produto, IFormFile imageUpload)
         {
             if (ModelState.IsValid)
             {
+                //salvando a imagem
+                if (imageUpload != null && imageUpload.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await imageUpload.CopyToAsync(memoryStream);
+                        produto.Imagem = memoryStream.ToArray();
+                        produto.ImagemMimeType = imageUpload.ContentType;
+                    }
+                }
+
                 var usuarioLogado = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 produto.IdVendedor = usuarioLogado;
                 _context.Produtos.Add(produto);
@@ -97,8 +119,8 @@ namespace SmartBuy.Controllers
 
         [HttpPost("Produtos/editar/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProduto, Nome, Descricao, Preco, Estoque, IdCategoria, Imagem")] Produto produto)
-        {
+        public async Task<IActionResult> Edit(int id, [Bind("IdProduto, Nome, Descricao, Preco, Estoque, IdCategoria, Imagem")] Produto produto, IFormFile imageUpload) 
+        { 
             var usuarioLogado = User.FindFirstValue(ClaimTypes.NameIdentifier);
             produto.IdVendedor = usuarioLogado;
 
@@ -109,6 +131,17 @@ namespace SmartBuy.Controllers
 
             if (ModelState.IsValid)
             {
+                //salvando a imagem
+                if (imageUpload != null && imageUpload.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await imageUpload.CopyToAsync(memoryStream);
+                        produto.Imagem = memoryStream.ToArray();
+                        produto.ImagemMimeType = imageUpload.ContentType;
+                    }
+                }
+
                 _context.Update(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToActionPermanent(nameof(Index));
