@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.EntityFrameworkCore;
 
 namespace SmartBuy.Models
@@ -10,8 +12,10 @@ namespace SmartBuy.Models
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+           
             builder.Entity<Vendedor>()
                 .Property(p => p.Nome)
                 .HasMaxLength(200);

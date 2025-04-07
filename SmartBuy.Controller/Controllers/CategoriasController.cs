@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartBuy.Models;
 
 namespace SmartBuy.Controllers
 {
+    [Authorize]
     public class CategoriasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -11,6 +13,8 @@ namespace SmartBuy.Controllers
         {
             _context = context;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Categorias.ToListAsync());

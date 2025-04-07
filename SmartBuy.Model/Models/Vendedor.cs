@@ -8,6 +8,8 @@ namespace SmartBuy.Models
         [Key]
         public int IdVendedor { get; set; }
 
+        public string IdUsuario { get; set; }
+
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Nome { get; set; }
 

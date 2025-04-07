@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing;
@@ -6,6 +7,7 @@ using SmartBuy.Models;
 
 namespace SmartBuy.Controllers
 {
+    [Authorize]
     public class ProdutosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -13,6 +15,8 @@ namespace SmartBuy.Controllers
         {
             _context = context;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Produtos.ToListAsync());
@@ -45,7 +49,7 @@ namespace SmartBuy.Controllers
             if (_context.Produtos == null)
                 return NotFound();
 
-            var produto = _context.Produtos.FirstOrDefault(x => x.IdProduto == id);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id);
 
             if (produto == null)
                 return NotFound();
