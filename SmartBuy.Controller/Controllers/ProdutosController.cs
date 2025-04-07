@@ -25,6 +25,7 @@ namespace SmartBuy.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+            //nota: melhorar a forma de validar o usuario logado, causando repetição de código
             //obtenho o usuario logado no identt no momento
             var user = await _signInManager.GetUserAsync(User);
 
@@ -61,10 +62,14 @@ namespace SmartBuy.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
+            //obtenho o usuario logado no identt no momento
+            var user = await _signInManager.GetUserAsync(User);
+
             if (_context.Produtos == null)
                 return NotFound();
 
-            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id);
+            //pesquisa idvendedor para garantir que o retorno seja somente dos vendedor logado
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id));
 
             if (produto == null)
                 return NotFound();
@@ -77,7 +82,15 @@ namespace SmartBuy.Controllers
         {
             //carregar o combobox de categorias
             CarregarCategorias();
-            var produto = await _context.Produtos.FindAsync(id);
+            //obtenho o usuario logado no identt no momento
+            var user = await _signInManager.GetUserAsync(User);
+
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id));
+
+            if (produto == null)
+                return NotFound();
+
+
             return View(produto);
 
         }
@@ -106,10 +119,13 @@ namespace SmartBuy.Controllers
         [Route("Produtos/excluir/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
+            //obtenho o usuario logado no identt no momento
+            var user = await _signInManager.GetUserAsync(User);
+
             if (_context.Produtos == null)
                 return NotFound();
 
-            var produto = await _context.Produtos.Where(x => x.IdProduto == id).FirstOrDefaultAsync();
+            var produto = await _context.Produtos.Where(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id)).FirstOrDefaultAsync();
 
             if (produto == null)
                 return NotFound();

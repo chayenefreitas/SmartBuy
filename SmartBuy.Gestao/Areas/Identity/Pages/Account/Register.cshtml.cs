@@ -130,7 +130,7 @@ namespace SmartBuy.Gestao.Areas.Identity.Pages.Account
                     {
                         IdVendedor = user.Id,
                         Email = Input.Email,
-                        Senha = Input.Password
+                        //Senha = Input.Password,
                     };
                      _context.Vendedores.Add(vendedor);
                     _context.SaveChanges();

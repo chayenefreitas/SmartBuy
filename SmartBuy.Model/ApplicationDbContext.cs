@@ -19,6 +19,10 @@ namespace SmartBuy.Models
             builder.Entity<Vendedor>()
                 .HasKey(p => p.IdVendedor);
 
+            builder.Entity<Vendedor>()
+                .Property(p => p.Senha)
+                .IsRequired(false);
+
             builder.Entity<Categoria>()
                 .Property(p => p.Nome)
                 .HasMaxLength(150);

@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Resources;
+using System.Runtime.Versioning;
 
 namespace SmartBuy.Models
 {
@@ -17,6 +19,7 @@ namespace SmartBuy.Models
         [Display(Name = "Descrição")]
         [StringLength(250, ErrorMessage = "O campo {0} deve ser menor/igual {1} caracteres")]
         public string Descricao { get; set; }
+
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [Range(0.01, double.MaxValue, ErrorMessage = "O {0} deve ser maior que zero.")]
