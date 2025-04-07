@@ -21,13 +21,13 @@ Projeto desenvolvido como parte do MBA em Desenvolvimento Web – DevXpert (Turm
 
 
 ## Funcionalizadas da Aplicação Web
-- [x] Cadastro de Usuário
-- [x] Login de Usuário
-- [x] Cadastro, editar, exclusão e alteração de categorias
-- [x] Cadastro, editar, exclusão e alteração de Produtos
-- [x] Listagem de Produtos (Com validação por usuário, listando todos os produtos em acesso anonimo e listagem por usuario autenticado (exibindo somente os produtos cadastrados pelo vendedor)
-- [x] Design responsivo e intuitivo
-- [x] Validação de campos
+- ✅ Cadastro de Usuário
+- ✅ Login de Usuário
+- ✅ Cadastro, editar, exclusão e alteração de categorias
+- ✅ Cadastro, editar, exclusão e alteração de Produtos
+- ✅ Listagem de Produtos (Com validação por usuário, listando todos os produtos em acesso anonimo e listagem por usuario autenticado (exibindo somente os produtos cadastrados pelo vendedor)
+- ✅ Design responsivo e intuitivo
+- ✅ Validação de campos
 
 ## API RESTful (Em Desenvolvimento)
 - [ ] A API será responsável por:
