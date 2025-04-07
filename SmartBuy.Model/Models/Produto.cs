@@ -37,7 +37,7 @@ namespace SmartBuy.Models
         //[Required(ErrorMessage = "O campo {0} é obrigatório")]
         public byte[]? Imagem { get; set; }
 
-        public int IdVendedor { get; set; }
+        public string IdVendedor { get; set; }
 
         //[NotMapped]
         //public Vendedor Vendedor { get; set; }

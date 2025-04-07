@@ -56,11 +56,31 @@ namespace SmartBuy.Model.Migrations
                 {
                     IdCategoria = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categorias", x => x.IdCategoria);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    IdProduto = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Preco = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
+                    Estoque = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
+                    IdCategoria = table.Column<int>(type: "int", nullable: false),
+                    Imagem = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    IdVendedor = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.IdProduto);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,6 +89,7 @@ namespace SmartBuy.Model.Migrations
                 {
                     IdVendedor = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nome = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -184,29 +205,6 @@ namespace SmartBuy.Model.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Produtos",
-                columns: table => new
-                {
-                    IdProduto = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Preco = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
-                    Estoque = table.Column<decimal>(type: "decimal(18,4)", precision: 18, scale: 4, nullable: false),
-                    CategoriaIdCategoria = table.Column<int>(type: "int", nullable: true),
-                    Imagem = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Produtos", x => x.IdProduto);
-                    table.ForeignKey(
-                        name: "FK_Produtos_Categorias_CategoriaIdCategoria",
-                        column: x => x.CategoriaIdCategoria,
-                        principalTable: "Categorias",
-                        principalColumn: "IdCategoria");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -245,11 +243,6 @@ namespace SmartBuy.Model.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Produtos_CategoriaIdCategoria",
-                table: "Produtos",
-                column: "CategoriaIdCategoria");
         }
 
         /// <inheritdoc />
@@ -271,6 +264,9 @@ namespace SmartBuy.Model.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
                 name: "Produtos");
 
             migrationBuilder.DropTable(
@@ -281,9 +277,6 @@ namespace SmartBuy.Model.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Categorias");
         }
     }
 }

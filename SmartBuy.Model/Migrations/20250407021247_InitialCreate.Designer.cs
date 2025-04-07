@@ -12,8 +12,8 @@ using SmartBuy.Models;
 namespace SmartBuy.Model.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250405181257_v02-SmartBuy")]
-    partial class v02SmartBuy
+    [Migration("20250407021247_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -236,6 +236,10 @@ namespace SmartBuy.Model.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoria"));
 
                     b.Property<string>("Descricao")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
@@ -265,11 +269,10 @@ namespace SmartBuy.Model.Migrations
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdVendedor")
-                        .HasColumnType("int");
+                    b.Property<string>("IdVendedor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Imagem")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Nome")
@@ -296,6 +299,9 @@ namespace SmartBuy.Model.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdUsuario")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")

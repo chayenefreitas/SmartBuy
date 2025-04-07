@@ -49,6 +49,7 @@ namespace SmartBuy.Models
                 .Property(p => p.Imagem)
                 .IsRequired(false);
 
+
             base.OnModelCreating(builder);
         }
 

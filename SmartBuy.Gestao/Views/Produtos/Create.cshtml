@@ -1,4 +1,4 @@
-﻿@using SmartBuy.Model
+﻿@using SmartBuy.Models
 
 @model Produto
 
@@ -57,9 +57,8 @@
             <span asp-validation-for="Imagem" class="alert-danger" />
         </div>
 
-        <input asp-for="IdVendedor" type="hidden" value="1"/>
 
-        <input type="hidden" asp-for="IdVendedor" />
+        @* <input type="hidden" asp-for="IdVendedor" /> *@
         <div class="row">
             <div class="col-sm-4 mt-3">
                 <button type="submit" value="Enviar" class="btn btn-primary">Enviar</button>

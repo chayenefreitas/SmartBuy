@@ -266,8 +266,8 @@ namespace SmartBuy.Model.Migrations
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdVendedor")
-                        .HasColumnType("int");
+                    b.Property<string>("IdVendedor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Imagem")
                         .HasColumnType("varbinary(max)");
@@ -288,8 +288,11 @@ namespace SmartBuy.Model.Migrations
 
             modelBuilder.Entity("SmartBuy.Models.Vendedor", b =>
                 {
-                    b.Property<string>("IdVendedor")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("IdVendedor")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVendedor"));
 
                     b.Property<string>("Email")
                         .IsRequired()
