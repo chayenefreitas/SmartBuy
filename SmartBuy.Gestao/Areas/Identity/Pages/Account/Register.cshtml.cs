@@ -125,10 +125,10 @@ namespace SmartBuy.Gestao.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    //caso tenha sido criado o usuario com identt, irá salvar o vendedor reutilizando as informacoes do identt
                     var vendedor = new Vendedor
                     {
-                        IdUsuario = user.Id,
-                        Nome = Input.Email,
+                        IdVendedor = user.Id,
                         Email = Input.Email,
                         Senha = Input.Password
                     };

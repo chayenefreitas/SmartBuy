@@ -14,6 +14,7 @@ namespace SmartBuy.Controllers
             _context = context;
         }
 
+        //Utilizado AllowAnonymous para permitir a visualização das categorias de forma anonima
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
@@ -29,6 +30,7 @@ namespace SmartBuy.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create([FromForm] Categoria categoria)
         {
+            //verifica validade e salva a categoria em contexto
             if (ModelState.IsValid)
             {
                 _context.Categorias.Add(categoria);
@@ -121,6 +123,7 @@ namespace SmartBuy.Controllers
                 return Problem("Categoria é nula");
             var categoria = await _context.Categorias.FindAsync(id);
 
+            //verifica se a categoria não é nula e busca se não existe algum produto utilizando a categoria, proibindo a exclusão de categorias em uso
             if (categoria != null && !_context.Produtos.Any(x => x.IdCategoria == id))
             {
                 _context.Categorias.Remove(categoria);
@@ -129,11 +132,13 @@ namespace SmartBuy.Controllers
             }
             else
             {
+                //Mensagem do alerta foi definida direto na view
                 TempData["Alerta"] = "";
                 return View(categoria);
             }
         }
 
+        //verifica a existencia da categoria
         private bool CategoriaExists(int id)
         {
             return (_context.Categorias?.Any(x => x.IdCategoria == id)).GetValueOrDefault();

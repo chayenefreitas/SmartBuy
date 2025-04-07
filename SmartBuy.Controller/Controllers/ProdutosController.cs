@@ -25,7 +25,10 @@ namespace SmartBuy.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+            //obtenho o usuario logado no identt no momento
             var user = await _signInManager.GetUserAsync(User);
+
+            //caso o user seja nulo, é pq não existe usuario logado. Assim, irá direcionar para a lista geral de produtos, senão, direciona para a lista filtrada por IdVendedor
             if (user == null)
                 return View(await _context.Produtos.ToListAsync());
             else

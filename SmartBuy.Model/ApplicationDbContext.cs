@@ -15,10 +15,9 @@ namespace SmartBuy.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-           
+
             builder.Entity<Vendedor>()
-                .Property(p => p.Nome)
-                .HasMaxLength(200);
+                .HasKey(p => p.IdVendedor);
 
             builder.Entity<Categoria>()
                 .Property(p => p.Nome)

@@ -12,8 +12,8 @@ using SmartBuy.Models;
 namespace SmartBuy.Model.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250407021247_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250407120046_InicialCreate")]
+    partial class InicialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -291,29 +291,14 @@ namespace SmartBuy.Model.Migrations
 
             modelBuilder.Entity("SmartBuy.Models.Vendedor", b =>
                 {
-                    b.Property<int>("IdVendedor")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdVendedor"));
-
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdUsuario")
+                    b.Property<string>("IdVendedor")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Senha")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdVendedor");
 
                     b.ToTable("Vendedores");
                 });
