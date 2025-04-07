@@ -1,0 +1,6 @@
+@SmartBuy.API_HostAddress = http://localhost:5296
+
+GET {{SmartBuy.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
