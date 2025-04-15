@@ -4,10 +4,11 @@
     ViewData["Title"] = "Registro";
 }
 
-<h1>@ViewData["Title"]</h1>
 
-<div class="row">
+
+<div class="d-flex justify-content-center align-items-center min-vh-85">
     <div class="col-md-4">
+        <h1>@ViewData["Title"]</h1>
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Crie sua conta.</h2>
             <hr />
