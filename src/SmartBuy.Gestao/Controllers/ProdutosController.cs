@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 using System.Security.Claims;
 
 namespace SmartBuy.Gestao

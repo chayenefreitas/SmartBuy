@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.EntityFrameworkCore;
 
-namespace SmartBuy.Models
+namespace SmartBuy.Core.Entities
 {
     public class ApplicationDbContext : IdentityDbContext
     {

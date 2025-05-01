@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using SmartBuy.Model.Configurations;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 using System.Globalization;
+using SmartBuy.Core.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 

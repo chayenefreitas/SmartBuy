@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 
-namespace SmartBuy.Model.Configurations
+namespace SmartBuy.Core.Configurations
 {
     public static class DatabaseSelectorExtension
     {

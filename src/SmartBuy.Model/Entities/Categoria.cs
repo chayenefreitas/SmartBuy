@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SmartBuy.Models
+namespace SmartBuy.Core.Entities
 {
     public class Categoria
     {

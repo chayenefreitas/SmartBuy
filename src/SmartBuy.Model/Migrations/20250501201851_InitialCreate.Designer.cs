@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 
 #nullable disable
 
-namespace SmartBuy.Model.Migrations
+namespace SmartBuy.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250407142522_InicialCreate")]
-    partial class InicialCreate
+    [Migration("20250501201851_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,7 +216,7 @@ namespace SmartBuy.Model.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SmartBuy.Models.Categoria", b =>
+            modelBuilder.Entity("SmartBuy.Core.Entities.Categoria", b =>
                 {
                     b.Property<int>("IdCategoria")
                         .ValueGeneratedOnAdd()
@@ -236,7 +236,7 @@ namespace SmartBuy.Model.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("SmartBuy.Models.Produto", b =>
+            modelBuilder.Entity("SmartBuy.Core.Entities.Produto", b =>
                 {
                     b.Property<int>("IdProduto")
                         .ValueGeneratedOnAdd()
@@ -260,6 +260,9 @@ namespace SmartBuy.Model.Migrations
                     b.Property<byte[]>("Imagem")
                         .HasColumnType("BLOB");
 
+                    b.Property<string>("ImagemMimeType")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -274,7 +277,7 @@ namespace SmartBuy.Model.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("SmartBuy.Models.Vendedor", b =>
+            modelBuilder.Entity("SmartBuy.Core.Entities.Vendedor", b =>
                 {
                     b.Property<string>("IdVendedor")
                         .HasColumnType("TEXT");

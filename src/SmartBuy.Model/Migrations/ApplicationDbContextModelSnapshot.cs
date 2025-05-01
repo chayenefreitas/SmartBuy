@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 
 #nullable disable
 
-namespace SmartBuy.Model.Migrations
+namespace SmartBuy.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -213,7 +213,7 @@ namespace SmartBuy.Model.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SmartBuy.Models.Categoria", b =>
+            modelBuilder.Entity("SmartBuy.Core.Entities.Categoria", b =>
                 {
                     b.Property<int>("IdCategoria")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace SmartBuy.Model.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("SmartBuy.Models.Produto", b =>
+            modelBuilder.Entity("SmartBuy.Core.Entities.Produto", b =>
                 {
                     b.Property<int>("IdProduto")
                         .ValueGeneratedOnAdd()
@@ -274,7 +274,7 @@ namespace SmartBuy.Model.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("SmartBuy.Models.Vendedor", b =>
+            modelBuilder.Entity("SmartBuy.Core.Entities.Vendedor", b =>
                 {
                     b.Property<string>("IdVendedor")
                         .HasColumnType("TEXT");

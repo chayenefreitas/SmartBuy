@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBuy.Gestao", "SmartBuy.Gestao\SmartBuy.Gestao.csproj", "{88196067-0F03-4028-9385-11D4E20A6F18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBuy.Web", "SmartBuy.Gestao\SmartBuy.Web.csproj", "{88196067-0F03-4028-9385-11D4E20A6F18}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bibliotecas", "Bibliotecas", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBuy.Model", "SmartBuy.Model\SmartBuy.Model.csproj", "{6F7519A5-1B4F-4E37-9CC6-77CD5FD59998}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBuy.Core", "SmartBuy.Model\SmartBuy.Core.csproj", "{6F7519A5-1B4F-4E37-9CC6-77CD5FD59998}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBuy.API", "SmartBuy.API\SmartBuy.API.csproj", "{C3DE38AB-A916-49BB-BE1F-F7C5164FCE0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBuy.Infrastructure", "SmartBuy.Infrastructure\SmartBuy.Infrastructure.csproj", "{7B105D40-2175-41AE-894A-98689FFE9820}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +29,13 @@ Global
 		{C3DE38AB-A916-49BB-BE1F-F7C5164FCE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3DE38AB-A916-49BB-BE1F-F7C5164FCE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3DE38AB-A916-49BB-BE1F-F7C5164FCE0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B105D40-2175-41AE-894A-98689FFE9820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B105D40-2175-41AE-894A-98689FFE9820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B105D40-2175-41AE-894A-98689FFE9820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B105D40-2175-41AE-894A-98689FFE9820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6F7519A5-1B4F-4E37-9CC6-77CD5FD59998} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFE99397-78E3-4023-A7C3-0B9192048306}

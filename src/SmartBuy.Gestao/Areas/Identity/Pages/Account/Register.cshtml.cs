@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 
 namespace SmartBuy.Gestao.Areas.Identity.Pages.Account
 {

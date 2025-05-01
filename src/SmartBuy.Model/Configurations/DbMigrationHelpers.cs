@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SmartBuy.Models;
+using SmartBuy.Core.Entities;
 
-namespace SmartBuy.Model.Configurations
+namespace SmartBuy.Core.Configurations
 {
     public static class DbMigrationHelpers
     {

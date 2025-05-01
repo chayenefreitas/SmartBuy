@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SmartBuy.Model.Migrations
+namespace SmartBuy.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class InicialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,6 +76,7 @@ namespace SmartBuy.Model.Migrations
                     Estoque = table.Column<decimal>(type: "TEXT", precision: 18, scale: 4, nullable: false),
                     IdCategoria = table.Column<int>(type: "INTEGER", nullable: false),
                     Imagem = table.Column<byte[]>(type: "BLOB", nullable: true),
+                    ImagemMimeType = table.Column<string>(type: "TEXT", nullable: true),
                     IdVendedor = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

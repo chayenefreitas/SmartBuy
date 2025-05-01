@@ -1,4 +1,4 @@
-namespace SmartBuy.Models
+namespace SmartBuy.Core.Entities
 {
     public class ErrorViewModel
     {

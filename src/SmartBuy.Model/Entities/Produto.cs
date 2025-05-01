@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Resources;
-using System.Runtime.Versioning;
 
-namespace SmartBuy.Models
+namespace SmartBuy.Core.Entities
 {
     public class Produto
     {
