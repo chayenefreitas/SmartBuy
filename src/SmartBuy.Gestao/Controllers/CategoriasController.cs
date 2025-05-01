@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartBuy.Models;
 
-namespace SmartBuy.Controllers
+namespace SmartBuy.Gestao
 {
     [Authorize]
     public class CategoriasController : Controller

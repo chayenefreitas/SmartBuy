@@ -20,7 +20,7 @@
             <div class="card h-100 shadow-sm">
                 @if (item.Imagem != null)
                 {
-                    <img src="@Url.Action("Imagem", "Produtos", new {id = item.IdProduto})" class="card-img-top img-fluid" style="height: 250px; object-fit: cover;" alt="@item.Nome" />
+                    <img src="@Url.Action("Imagem", "Produtos", new {id = item.IdProduto})" class="card-img-top img-fluid" style="height: 250px; object-fit: contain;" alt="@item.Nome" />
                 }
                 else
                 {

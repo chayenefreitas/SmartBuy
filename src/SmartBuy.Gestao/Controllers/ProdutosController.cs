@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using SmartBuy.Models;
 using System.Security.Claims;
 
-namespace SmartBuy.Controllers
+namespace SmartBuy.Gestao
 {
     [Authorize]
     public class ProdutosController : Controller
