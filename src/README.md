@@ -44,7 +44,7 @@ O projeto consiste em:
 ## 📁 Estrutura do Projeto
 
 ```bash
-SmartBuy/
+src/SmartBuy/
 ├── SmartBuy.Gestao/       # Projeto MVC
 ├── SmartBuy.Api/          # Projeto da API RESTful
 ├── SmartBuy.Controller/   # Camada de controle
