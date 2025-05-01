@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmartBuy.Infrastructure\SmartBuy.Infrastructure.csproj" />
     <ProjectReference Include="..\SmartBuy.Model\SmartBuy.Core.csproj" />
   </ItemGroup>
 

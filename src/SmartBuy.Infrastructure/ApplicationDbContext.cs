@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SmartBuy.Core.Entities;
 
-namespace SmartBuy.Core.Entities
+namespace SmartBuy.Infrastructure
 {
     public class ApplicationDbContext : IdentityDbContext
     {

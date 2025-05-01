@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartBuy.Core.Entities;
+using SmartBuy.Infrastructure;
 
 namespace SmartBuy.Gestao
 {

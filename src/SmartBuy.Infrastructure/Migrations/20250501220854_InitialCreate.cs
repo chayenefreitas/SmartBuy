@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SmartBuy.Core.Migrations
+namespace SmartBuy.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
