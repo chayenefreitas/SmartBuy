@@ -5,7 +5,7 @@
 Bem-vindo ao repositório do **SmartBuy**!  
 Este projeto é uma entrega do **MBA DevXpert Full Stack .NET**, referente ao módulo **Introdução ao Desenvolvimento ASP.NET Core**.
 
-O principal objetivo é desenvolver uma aplicação de e-commerce que permite aos usuários **criar, editar, visualizar e excluir posts e comentários**, tanto por meio de uma **interface web (MVC)** quanto via **API RESTful**.
+O principal objetivo é desenvolver uma aplicação de e-commerce que permite aos usuários **criar, editar, visualizar e excluir categorias e produtos**, tanto por meio de uma **interface web (MVC)** quanto via **API RESTful**.
 
 ### 👤 Autor(a)
 - Chayene Freitas
@@ -92,7 +92,7 @@ cd SmartBuy
 3. **Execute a Aplicação MVC**
 
 ```bash
-cd SmartBuy/SmartBuy.Gestao/
+cd src/SmartBuy/SmartBuy.Gestao/
 dotnet run
 ```
 Acesse em: [http://localhost:5000](http://localhost:5000)
@@ -100,7 +100,7 @@ Acesse em: [http://localhost:5000](http://localhost:5000)
 4. **Execute a API**
 
 ```bash
-cd SmartBuy/SmartBuy.Api/
+cd src/SmartBuy/SmartBuy.Api/
 dotnet run
 ```
 Acesse a documentação da API em: [http://localhost:5001/swagger](http://localhost:5001/swagger)
