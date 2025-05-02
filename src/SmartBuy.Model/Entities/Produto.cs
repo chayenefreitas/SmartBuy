@@ -26,13 +26,12 @@ namespace SmartBuy.Core.Entities
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [Range(0.01, double.MaxValue, ErrorMessage = "O {0} deve ser maior que zero.")]
-        public decimal Estoque { get; set; }
+        public int Estoque { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [Display(Name = "Categoria")]
         public int IdCategoria { get; set; }
 
-        [NotMapped]
         public Categoria Categoria { get; set; }
 
         //[Required(ErrorMessage = "O campo {0} é obrigatório")]

@@ -24,7 +24,7 @@
                 <label asp-for="Preco" class="form-label">Preço</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input asp-for="Preco" class="form-control" />
+                    <input asp-for="Preco" class="form-control" lang="pt-br" value="@Model.Preco.ToString("F2")"/>
                 </div>
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
@@ -32,7 +32,7 @@
 
         <div class="form-group col-md-6">
             <label class="col-form-label" asp-for="Estoque">Estoque</label>
-            <input class="form-control" type="text" asp-for="Estoque" />
+            <input class="form-control" type="number" asp-for="Estoque" />
             <span asp-validation-for="Estoque" class="alert-danger" />
         </div>
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartBuy.Infrastructure;
 
@@ -10,9 +11,11 @@ using SmartBuy.Infrastructure;
 namespace SmartBuy.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250501233901_v01")]
+    partial class v01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.14");
@@ -244,8 +247,9 @@ namespace SmartBuy.Infrastructure.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Estoque")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Estoque")
+                        .HasPrecision(18, 4)
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("IdCategoria")
                         .HasColumnType("INTEGER");

@@ -32,12 +32,17 @@ namespace SmartBuy.Infrastructure
                .IsRequired(false);
 
             builder.Entity<Produto>()
+                .HasOne(p => p.Categoria)
+                .WithMany()
+                .HasForeignKey(p => p.IdCategoria)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Produto>()
                 .Property(p => p.Preco)
                 .HasPrecision(18, 4);
 
             builder.Entity<Produto>()
-                .Property(p => p.Estoque)
-                .HasPrecision(18, 4);
+                .Property(p => p.Estoque);
 
             builder.Entity<Produto>()
                 .Property(p => p.Nome)

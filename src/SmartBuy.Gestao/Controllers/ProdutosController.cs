@@ -47,9 +47,10 @@ namespace SmartBuy.Gestao
 
         public IActionResult Create()
         {
+            var produto = new Produto();
             //carregar o combobox de categorias
             CarregarCategorias();
-            return View();
+            return View(produto);
         }
 
         [HttpPost]
@@ -89,7 +90,7 @@ namespace SmartBuy.Gestao
                 return NotFound();
 
             //pesquisa idvendedor para garantir que o retorno seja somente dos vendedor logado
-            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id));
+            var produto = await _context.Produtos.Include(x => x.Categoria).FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id));
 
             if (produto == null)
                 return NotFound();
@@ -123,12 +124,16 @@ namespace SmartBuy.Gestao
             produto.IdVendedor = usuarioLogado;
 
             if (id != produto.IdProduto)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
+                var produtoOriginal = await _context.Produtos.AsNoTracking()
+                    .FirstOrDefaultAsync(p => p.IdProduto == id);
+
+                if (produtoOriginal == null)
+                    return NotFound();
+
                 //salvando a imagem
                 if (imageUpload != null && imageUpload.Length > 0)
                 {
@@ -139,8 +144,13 @@ namespace SmartBuy.Gestao
                         produto.ImagemMimeType = imageUpload.ContentType;
                     }
                 }
+                else
+                {
+                    produto.Imagem = produtoOriginal.Imagem;
+                    produto.ImagemMimeType = produtoOriginal.ImagemMimeType;
+                }
 
-                _context.Update(produto);
+                    _context.Update(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToActionPermanent(nameof(Index));
             }
