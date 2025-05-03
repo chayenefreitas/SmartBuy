@@ -36,6 +36,7 @@ namespace SmartBuy.Gestao
 
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Imagem(int id)
         {
             var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id);

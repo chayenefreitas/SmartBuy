@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-SmartBuy.Gestao-97da4a9e-af08-45d5-b6d4-dadef8104094</UserSecretsId>
+    <UserSecretsId>aspnet-SmartBuy.Web-97da4a9e-af08-45d5-b6d4-dadef8104094</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

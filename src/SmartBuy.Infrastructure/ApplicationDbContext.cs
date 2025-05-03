@@ -19,6 +19,10 @@ namespace SmartBuy.Infrastructure
                 .HasKey(p => p.IdVendedor);
 
             builder.Entity<Vendedor>()
+                .Property(p => p.Nome)
+                .IsRequired();
+
+            builder.Entity<Vendedor>()
                 .Property(p => p.Senha)
                 .IsRequired(false);
 

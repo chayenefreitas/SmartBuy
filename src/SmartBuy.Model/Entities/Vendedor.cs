@@ -8,6 +8,8 @@ namespace SmartBuy.Core.Entities
         [Key]
         public string IdVendedor { get; set; }
 
+        public string Nome { get; set; }
+
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
