@@ -4,6 +4,7 @@ using SmartBuy.Infrastructure;
 
 namespace SmartBuy.API.Controllers
 {
+    [ApiController]
     public class ProdutosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -11,6 +12,8 @@ namespace SmartBuy.API.Controllers
         {
             _context = context;
         }
+
+
         // GET: ProdutosController
         public ActionResult Index()
         {

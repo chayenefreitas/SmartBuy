@@ -3,6 +3,8 @@ using Microsoft.Extensions.Options;
 using SmartBuy.Core.Configurations;
 using SmartBuy.Infrastructure;
 using System.Globalization;
+using SmartBuy.Core.Entities;
+using SmartBuy.Core.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,9 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 builder.AddDatabaseSelector();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IUser, AspNetUser>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

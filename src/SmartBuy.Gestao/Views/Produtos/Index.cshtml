@@ -1,13 +1,14 @@
 ﻿@using SmartBuy.Core.Entities
 @model IEnumerable<Produto>
 
+
 @{
     ViewData["Title"] = "Lista de Produtos";
 }
 
-<h1 class="display-5 mb-4 text-center">@ViewData["Title"]</h1>
+<h1 class="display-4 mb-4 text-center">@ViewData["Title"]</h1>
 
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-end mb-5">
     <a class="btn btn-primary" asp-action="Create">
         <i class="fa fa-plus me-2"></i> Novo Produto
     </a>

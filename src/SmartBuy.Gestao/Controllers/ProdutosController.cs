@@ -4,35 +4,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartBuy.Core.Entities;
+using SmartBuy.Core.Interfaces;
 using SmartBuy.Infrastructure;
-using System.Security.Claims;
 
 namespace SmartBuy.Gestao
 {
     [Authorize]
     public class ProdutosController : Controller
     {
-        private readonly UserManager<IdentityUser> _signInManager;
         private readonly ApplicationDbContext _context;
+        private readonly IUser _user;
 
-        public ProdutosController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public ProdutosController(ApplicationDbContext context, IUser user)
         {
             _context = context;
-            _signInManager = userManager;
+            _user = user;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            //nota: melhorar a forma de validar o usuario logado, causando repetição de código
-            //obtenho o usuario logado no identt no momento
-            var user = await _signInManager.GetUserAsync(User);
-
-            //caso o user seja nulo, é pq não existe usuario logado. Assim, irá direcionar para a lista geral de produtos, senão, direciona para a lista filtrada por IdVendedor
-            if (user == null)
-                return View(await _context.Produtos.ToListAsync());
+            //verifica se o existe usuario autenticado para realizar o direcionamento da lista
+            if (_user.IsAuthenticated())
+                return View(await _context.Produtos.Where(x => x.IdVendedor.Equals(_user.Id)).ToListAsync());
             else
-                return View(await _context.Produtos.Where(x => x.IdVendedor.Equals(user.Id)).ToListAsync());
+                return View(await _context.Produtos.ToListAsync());
 
         }
 
@@ -58,7 +54,7 @@ namespace SmartBuy.Gestao
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create([FromForm] Produto produto, IFormFile imageUpload)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _user.IsAuthenticated())
             {
                 //salvando a imagem
                 if (imageUpload != null && imageUpload.Length > 0)
@@ -71,8 +67,7 @@ namespace SmartBuy.Gestao
                     }
                 }
 
-                var usuarioLogado = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                produto.IdVendedor = usuarioLogado;
+                produto.IdVendedor = _user.Id;
                 _context.Produtos.Add(produto);
                 await _context.SaveChangesAsync();
 
@@ -85,13 +80,11 @@ namespace SmartBuy.Gestao
         public async Task<IActionResult> Details(int id)
         {
             //obtenho o usuario logado no identt no momento
-            var user = await _signInManager.GetUserAsync(User);
-
             if (_context.Produtos == null)
                 return NotFound();
 
             //pesquisa idvendedor para garantir que o retorno seja somente dos vendedor logado
-            var produto = await _context.Produtos.Include(x => x.Categoria).FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id));
+            var produto = await _context.Produtos.Include(x => x.Categoria).FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(_user.Id));
 
             if (produto == null)
                 return NotFound();
@@ -104,30 +97,26 @@ namespace SmartBuy.Gestao
         {
             //carregar o combobox de categorias
             CarregarCategorias();
-            //obtenho o usuario logado no identt no momento
-            var user = await _signInManager.GetUserAsync(User);
 
-            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id));
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.IdProduto == id && x.IdVendedor.Equals(_user.Id));
 
             if (produto == null)
                 return NotFound();
 
 
             return View(produto);
-
         }
 
         [HttpPost("Produtos/editar/{id:int}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProduto, Nome, Descricao, Preco, Estoque, IdCategoria, Imagem")] Produto produto, IFormFile imageUpload) 
-        { 
-            var usuarioLogado = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            produto.IdVendedor = usuarioLogado;
+        public async Task<IActionResult> Edit(int id, [Bind("IdProduto, Nome, Descricao, Preco, Estoque, IdCategoria, Imagem")] Produto produto, IFormFile imageUpload)
+        {
+            produto.IdVendedor = _user.Id;
 
             if (id != produto.IdProduto)
                 return NotFound();
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _user.IsAuthenticated())
             {
                 var produtoOriginal = await _context.Produtos.AsNoTracking()
                     .FirstOrDefaultAsync(p => p.IdProduto == id);
@@ -151,7 +140,7 @@ namespace SmartBuy.Gestao
                     produto.ImagemMimeType = produtoOriginal.ImagemMimeType;
                 }
 
-                    _context.Update(produto);
+                _context.Update(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToActionPermanent(nameof(Index));
             }
@@ -161,13 +150,11 @@ namespace SmartBuy.Gestao
         [Route("Produtos/excluir/{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            //obtenho o usuario logado no identt no momento
-            var user = await _signInManager.GetUserAsync(User);
 
             if (_context.Produtos == null)
                 return NotFound();
 
-            var produto = await _context.Produtos.Where(x => x.IdProduto == id && x.IdVendedor.Equals(user.Id)).FirstOrDefaultAsync();
+            var produto = await _context.Produtos.Where(x => x.IdProduto == id && x.IdVendedor.Equals(_user.Id)).FirstOrDefaultAsync();
 
             if (produto == null)
                 return NotFound();
@@ -184,7 +171,7 @@ namespace SmartBuy.Gestao
                 return Problem("Produto é nulo");
             var produto = await _context.Produtos.FindAsync(id);
 
-            if (produto != null)
+            if (produto != null && _user.IsAuthenticated())
             {
                 _context.Produtos.Remove(produto);
                 await _context.SaveChangesAsync();
