@@ -87,7 +87,12 @@ cd SmartBuy
 2. **Configure o Banco de Dados**
 
 - Edite o arquivo `appsettings.json` com a sua string de conexão do SQL Server.
-- Ao rodar a aplicação pela primeira vez, a configuração de *Seed* criará e populá o banco com dados iniciais.
+- O projeto possui os arquivos do banco de dados SQLite pré-populado com as seguintes definição:
+    Usuarios:
+      -email: usuario01@mail.com / senha: Usuario01*
+      -email: usuario02@mail.com / senha: Usuario02*
+    Categorias e produtos.
+      
 
 3. **Execute a Aplicação MVC**
 
