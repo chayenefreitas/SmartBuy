@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SmartBuy.Core.Entities;
 using SmartBuy.Infrastructure;
-using System.Threading.Tasks;
 
 namespace SmartBuy.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/produtos")]
     public class ProdutosController : Controller
@@ -18,6 +17,7 @@ namespace SmartBuy.API.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -30,6 +30,7 @@ namespace SmartBuy.API.Controllers
             return await _context.Produtos.ToListAsync();
         }
 
+        [AllowAnonymous]
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,6 +44,19 @@ namespace SmartBuy.API.Controllers
             if (produto == null)
                 return NotFound();
             return produto;
+        }
+
+        [AllowAnonymous]
+        [HttpGet("/produtos-categoria/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutosPorCategoria(int id)
+        {
+            if (_context.Produtos == null)
+                return NotFound();
+
+            return await _context.Produtos.Where(x => x.IdCategoria == id).ToListAsync();
         }
 
         [HttpPost]
