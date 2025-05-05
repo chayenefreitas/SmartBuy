@@ -46,13 +46,13 @@ O projeto consiste em:
 ```bash
 
 src/SmartBuy/
-├── SmartBuy.Gestao/       # Projeto MVC
-├── SmartBuy.Api/          # Projeto da API RESTful
-├── SmartBuy.Controller/   # Camada de controle
-├── SmartBuy.Model/        # Camada de modelo
-├── README.md              # Documentação do projeto
-├── FEEDBACK.md            # Feedbacks do instrutor
-└── .gitignore             # Padrões de exclusão do Git
+├── SmartBuy.Web/               # Projeto MVC
+├── SmartBuy.Api/               # Projeto da API RESTful
+├── SmartBuy.Infrastructure/    # Camada de Dados
+├── SmartBuy.Core/              # Camada compartilhada / Entities / Interfaces
+├── README.md                   # Documentação do projeto
+├── FEEDBACK.md                 # Feedbacks do instrutor
+└── .gitignore                  # Padrões de exclusão do Git
 ```
 
 ---
@@ -95,7 +95,7 @@ cd SmartBuy
 cd src/SmartBuy/SmartBuy.Gestao/
 dotnet run
 ```
-Acesse em: [http://localhost:5000](http://localhost:5000)
+Acesse em: [http://localhost:7224](http://localhost:7224)
 
 4. **Execute a API**
 
@@ -103,7 +103,7 @@ Acesse em: [http://localhost:5000](http://localhost:5000)
 cd src/SmartBuy/SmartBuy.Api/
 dotnet run
 ```
-Acesse a documentação da API em: [http://localhost:5001/swagger](http://localhost:5001/swagger)
+Acesse a documentação da API em: [http://localhost:7224/swagger](https://localhost:7224/swagger/index.html)
 
 ---
 
