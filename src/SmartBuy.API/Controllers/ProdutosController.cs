@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartBuy.Core.Entities;
+using SmartBuy.Core.Interfaces;
 using SmartBuy.Infrastructure;
 
 namespace SmartBuy.API.Controllers
@@ -24,7 +25,7 @@ namespace SmartBuy.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
-            if(_context.Produtos == null)
+            if (_context.Produtos == null)
                 return NotFound();
 
             return await _context.Produtos.ToListAsync();
