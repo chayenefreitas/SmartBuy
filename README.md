@@ -103,7 +103,7 @@ Acesse em: [http://localhost:7224](http://localhost:7224)
 cd src/SmartBuy/SmartBuy.Api/
 dotnet run
 ```
-Acesse a documentação da API em: [http://localhost:7224/swagger](https://localhost:7224/swagger/index.html)
+Acesse a documentação da API em: [http://localhost:7224/swagger/index.html](https://localhost:7224/swagger/index.html)
 
 ---
 
@@ -120,7 +120,7 @@ Acesse a documentação da API em: [http://localhost:7224/swagger](https://local
 A documentação da API está disponível via **Swagger**.  
 Após iniciar a API, acesse:
 
-📎 [http://localhost:5001/swagger](http://localhost:5001/swagger)
+📎 [http://localhost:7224/swagger/index.html](http://localhost:7224/swagger/index.html)
 
 ---
 
