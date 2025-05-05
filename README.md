@@ -88,10 +88,10 @@ cd SmartBuy
 
 - Edite o arquivo `appsettings.json` com a sua string de conexão do SQL Server.
 - O projeto possui os arquivos do banco de dados SQLite pré-populado com as seguintes definição:
-    Usuarios:
-      -email: usuario01@mail.com / senha: Usuario01*
-      -email: usuario02@mail.com / senha: Usuario02*
-    Categorias e produtos.
+    - Usuarios:
+      *email: usuario01@mail.com / senha: Usuario01*
+      *email: usuario02@mail.com / senha: Usuario02*
+    -Categorias e produtos.
       
 
 3. **Execute a Aplicação MVC**
