@@ -1,21 +1,54 @@
 ﻿@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+    ViewData["Title"] = "Sair";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity?.IsAuthenticated ?? false)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
+<style>
+    .logout-container {
+        max-width: 480px;
+        margin: auto;
+        padding: 2rem;
+        border-radius: 1rem;
+        background-color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 80px;
     }
-</header>
+
+        .logout-container h1 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+    .btn-link {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #0d6efd;
+    }
+
+        .btn-link:hover {
+            text-decoration: underline;
+            color: #0b5ed7;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+
+<div class="logout-container">
+    <h1>@ViewData["Title"]</h1>
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" class="text-center">
+            <p>Tem certeza de que deseja sair?</p>
+            <button type="submit" class="btn btn-link">Clique aqui para sair</button>
+        </form>
+    }
+    else
+    {
+        <p class="text-center">Você saiu do sistema com sucesso.</p>
+    }
+</div>

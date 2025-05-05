@@ -5,29 +5,67 @@
     ViewData["Title"] = "Log in";
 }
 
+<style>
+    body {
+        background-color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<div class="d-flex justify-content-center align-items-center min-vh-85">
+    .login-card {
+        max-width: 420px;
+        width: 100%;
+    }
+
+    .card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        background-color: #ffffff;
+    }
+
+        .card h4 {
+            font-weight: 600;
+        }
+
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+
+    .text-muted {
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
     <div class="login-card">
-        <div class="card">
+        <div class="card shadow-lg">
             <section>
                 <form id="account" method="post">
-                    <h4>Login</h4>
-                    <h4>Insira suas informações para login.</h4>
-                    <hr />
+                    <h4 class="mb-2 text-center">Acesse sua conta</h4>
+                    <p class="text-muted text-center mb-4">Insira seu email e senha para continuar</p>
+
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
                     <div class="form-floating mb-3">
-                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="email@example.com" />
+                        <label asp-for="Input.Email">Email</label>
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
+
                     <div class="form-floating mb-3">
-                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                        <label asp-for="Input.Password" class="form-label">Password</label>
+                        <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Senha" />
+                        <label asp-for="Input.Password">Senha</label>
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
 
-                    <div>
-                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <div class="d-grid">
+                        <button id="login-submit" type="submit" class="btn btn-primary btn-lg">Entrar</button>
                     </div>
                 </form>
             </section>
@@ -37,4 +75,4 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-        }
+}

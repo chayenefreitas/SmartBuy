@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SmartBuy.Core.Entities
 {
     public class Produto
     {
         [Key]
+        [JsonIgnore]
         [Display(Name = "Código")]
         public int IdProduto { get; set; }
 
@@ -32,6 +33,7 @@ namespace SmartBuy.Core.Entities
         [Display(Name = "Categoria")]
         public int IdCategoria { get; set; }
 
+        [JsonIgnore]
         public Categoria Categoria { get; set; }
 
         //[Required(ErrorMessage = "O campo {0} é obrigatório")]
@@ -39,6 +41,7 @@ namespace SmartBuy.Core.Entities
 
         public string ImagemMimeType { get; set; }
 
+        [JsonIgnore]
         public string IdVendedor { get; set; }
 
         //[NotMapped]

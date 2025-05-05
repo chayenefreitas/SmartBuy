@@ -7,7 +7,9 @@ using SmartBuy.API.Model;
 using SmartBuy.Core.Entities;
 using SmartBuy.Infrastructure;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartBuy.API.Controllers
 {
@@ -88,8 +90,21 @@ namespace SmartBuy.API.Controllers
             return Problem("Usuário ou senha inválidos");
         }
 
-        private string GerarJwt()
+        private async Task<string> GerarJwt()
         {
+            //var user = await _userManager.FindByNameAsync(email);
+            //var roles = await _userManager.GetRolesAsync(user);
+
+            //var claims = new List<Claim>
+            //{
+            //    new Claim(ClaimTypes.Name, user.UserName, user.Id),
+            //};
+
+            //foreach (var role in roles) 
+            //{
+            //    claims.Add(new Claim(ClaimTypes.Role, role));
+            //}
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Segredo);
 

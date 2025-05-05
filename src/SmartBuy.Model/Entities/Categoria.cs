@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SmartBuy.Core.Entities
 {
     public class Categoria
     {
         [Key]
+        [JsonIgnore]
         [Display(Name = "Código")]
         public int IdCategoria { get; set; }
 

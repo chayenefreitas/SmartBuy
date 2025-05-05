@@ -155,7 +155,7 @@ namespace SmartBuy.Gestao.Areas.Identity.Pages.Account
                     //}
                     //else
                     //{
-                    await _signInManager.SignInAsync(user, isPersistent: true);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                     //}
                 }
